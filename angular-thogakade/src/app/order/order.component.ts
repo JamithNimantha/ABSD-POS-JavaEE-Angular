@@ -8,7 +8,6 @@ import {ItemService} from '../core/services/item.service';
 import {Customer} from '../core/dto/Customer';
 import {Item} from '../core/dto/Item';
 import {PlaceOrder} from '../core/dto/PlaceOrder';
-// import $ from 'jquery';
 declare var $: any;
 
 @Component({
@@ -78,7 +77,7 @@ export class OrderComponent implements OnInit {
   }
 
   private getAllItems() {
-    this.items = this.itemService.getAllItems();
+    // this.items = this.itemService.getAllItems();
   }
 
   onPlaceOrderEdit(placedOrder) {
