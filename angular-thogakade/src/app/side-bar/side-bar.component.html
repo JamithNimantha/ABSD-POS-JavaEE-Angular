@@ -1,0 +1,85 @@
+<div class="ui tablet computer only padded grid">
+  <div class="ui inverted borderless top fixed fluid menu">
+    <a class="header item">ThogaKade</a>
+    <div class="right menu">
+      <div class="item">
+        <div class="ui small input"><input placeholder="Search..."/></div>
+      </div>
+      <a class="item">
+        <button (click)="onClickLogout()" class="ui button">
+          Logout
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="ui mobile only padded grid">
+  <div class="ui top fixed borderless fluid inverted menu">
+    <a class="header item">ThogaKade</a>
+    <div class="right menu">
+      <div class="item">
+        <button class="ui icon toggle basic inverted button">
+          <i class="content icon"></i>
+        </button>
+      </div>
+    </div>
+    <div class="ui vertical borderless inverted fluid menu">
+      <a routerLink="dashboard" class="item">Dashboard</a>
+      <a  routerLink="customer" class="item">Customer</a>
+      <a routerLink="item" class="item">Item</a>
+      <a routerLink="order" class="item">Order</a>
+      <a class="item">
+        <button (click)="onClickLogout()" class="ui button">
+          Logout
+        </button>
+      </a>
+      <div class="ui fitted divider"></div>
+      <div class="item">
+        <div class="ui small input"><input placeholder="Search..."/></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui padded grid">
+  <div
+    class="three wide tablet only three wide computer only column"
+    id="sidebar">
+    <div class="ui vertical borderless fluid text menu">
+      <div class="ui fitted divider"></div>
+      <a routerLink="dashboard" class="active item"> <i class="home icon"></i> Dashboard</a>
+      <div class="ui fitted divider"></div>
+      <a  routerLink="customer"  class="item"><i class="users icon"></i> Customer</a>
+      <div class="ui fitted divider"></div>
+      <a routerLink="item" class="item"><i class="gem icon"></i> Item</a>
+      <div class="ui fitted divider"></div>
+      <a  routerLink="order" class="item"><i class="shopping cart icon"></i> Order</a>
+      <div class="ui fitted divider"></div>
+    </div>
+  </div>
+  <div
+    class="sixteen wide mobile thirteen wide tablet thirteen wide computer right floated column"
+    id="content"
+  >
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<div id="logoutMode" class="ui basic modal">
+  <div class="ui icon header">
+    <i class="sign-out icon"></i>
+    Logout
+  </div>
+  <div style="margin-left: 35%" class="content center">
+    <p>Do you really want to logout?</p>
+  </div>
+  <div class="actions">
+    <div class="ui red basic cancel inverted button">
+      <i class="remove icon"></i>
+      No
+    </div>
+    <div class="ui green ok inverted button">
+      <i class="checkmark icon"></i>
+      Yes
+    </div>
+  </div>
+</div>

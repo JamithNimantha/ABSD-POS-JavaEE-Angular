@@ -1,0 +1,102 @@
+<div class="ui breadcrumb">
+  <div class="section">App</div>
+  <div class="divider"> / </div>
+  <div class="active section">Customer</div>
+</div>
+
+<h3 class="ui header"></h3>
+
+<div class="ui grid">
+  <div class="sixteen column row">
+
+    <div  class="sixteen wide column">
+      <div class="ui teal secondary segment">
+        <div class="ui form mini">
+
+          <div class="inline fields">
+            <div class="sixteen wide field">
+              <label style="width: 20%;"> ID *</label>
+              <input [(ngModel)]="id" name="id" placeholder="Customer ID" style="width: 80%;  font-weight: bold;" type="text" required [readonly]="isEdit">
+            </div>
+          </div>
+
+          <div class="inline fields">
+            <div class="sixteen wide field">
+              <label style="width: 20%;"> Name *</label>
+              <input [(ngModel)]="name" name="name" placeholder="Customer Name" style="width: 80%; font-weight: bold;" type="text" required>
+            </div>
+          </div>
+
+          <div class="inline fields">
+            <div class="sixteen wide field">
+              <label style="width: 20%;">Address *</label>
+              <textarea [(ngModel)]="address" style="width: 80%; height:10%;font-weight: bold;" name="address" placeholder="Customer Address" required></textarea>
+            </div>
+          </div>
+
+          <div class="inline fields">
+            <div class="sixteen wide field">
+              <label style="width: 20%;"> Salary *</label>
+              <input [(ngModel)]="salary" style="width: 80%;font-weight: bold;" name="salary" placeholder="Customer Salary" type="number" required>
+            </div>
+          </div>
+
+          <div class="inline fields" style="margin-left: 85%">
+            <div class="ui buttons">
+              <button (click)="onClear()" class="ui negative button">Clear</button>
+              <div class="or"></div>
+              <button (click)="onSave()" class="ui positive button">Save</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<table class="ui single line striped selectable unstackable table">
+  <thead>
+  <tr><th>ID</th>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Salary</th>
+    <th class="center aligned">#</th>
+    <th class="center aligned">#</th>
+  </tr></thead>
+  <tbody>
+  <tr *ngFor="let cust of customers;">
+    <td >{{cust.id}}</td>
+    <td >{{cust.name}}</td>
+    <td >{{cust.address}}</td>
+    <td >{{cust.salary}}</td>
+    <td class="center aligned">
+      <button (click)="onEdit(cust)" class="ui blue circular compact edit icon button"><i class="edit icon"></i></button>
+    </td>
+    <td class="center aligned">
+      <button (click)="onDelete(cust)" class="ui red circular compact trash icon button"><i class="trash icon"></i></button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<div id="deleteCustomerModel" class="ui basic modal">
+  <div class="ui icon header">
+    <i class="trash icon icon"></i>
+   Remove Customer
+  </div>
+  <div style="margin-left: 25%" class="content center">
+    <p>Do you really want remove the customer. This cannot be undone</p>
+  </div>
+  <div class="actions">
+    <div class="ui red basic cancel inverted button">
+      <i class="remove icon"></i>
+      No
+    </div>
+    <div (click)="onContinueDelete()" class="ui green ok inverted button">
+      <i class="checkmark icon"></i>
+      Yes
+    </div>
+  </div>
+</div>

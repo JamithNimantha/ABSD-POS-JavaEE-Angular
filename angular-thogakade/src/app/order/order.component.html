@@ -1,0 +1,176 @@
+<div class="ui breadcrumb">
+  <div class="section">App</div>
+  <div class="divider"> /</div>
+  <div class="active section">Order</div>
+</div>
+
+
+<h3 class="ui header"></h3>
+
+
+<div class="ui grid">
+  <div (click)="openModalPlaceOrder()" style="margin-left: 85%" class="ui teal labeled icon right floated button">
+    Place Order
+    <i class="add icon"></i>
+  </div>
+</div>
+
+<div class="ui grid">
+  <div class="sixteen column row">
+    <div class="sixteen wide column">
+      <table class="ui single line striped selectable unstackable table">
+        <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Customer ID</th>
+          <th>Order Date</th>
+          <th class="center aligned">#</th>
+          <th class="center aligned">#</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let order of orders;">
+          <td>{{order.order.id}}</td>
+          <td>{{order.order.custId}}</td>
+          <td>{{order.order.date}}</td>
+          <td class="center aligned">
+            <button (click)="viewOrder(order)" class="ui green circular compact eye icon button"><i class="eye icon"></i></button>
+          </td>
+          <td class="center aligned">
+            <button (click)="deleteOrder(order)" class="ui red circular compact trash icon button"><i class="trash icon"></i></button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+
+<div id="orderModel" class="ui longer fullscreen modal">
+  <i class="close icon"></i>
+  <div class="header">Place Order</div>
+  <div class="content">
+    <div class="ui grid">
+      <div class="sixteen column row">
+        <div class="sixteen wide column">
+          <div class="ui teal secondary segment">
+            <div class="ui form mini">
+              <div class="four fields">
+                <div class="field">
+                  <label>Customer ID</label>
+                  <select [(ngModel)]="selectedCustomer" (ngModelChange)="onChan()" class="ui search dropdown">
+                    <option>Select Customer ID</option>
+                    <option [ngValue]="cust" *ngFor="let cust of customers">{{cust.id}}</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Customer Name</label>
+                  <input [(ngModel)]="customer" type="text" name="customerName" placeholder="Customer Name" readonly>
+                </div>
+                <div class="field">
+                  <label>Order ID</label>
+                  <input type="text" name="orderID" placeholder="Order ID">
+                </div>
+                <div class="field">
+                  <label>Order Date</label>
+                  <input type="date" name="orderDate" placeholder="OrderDate">
+                </div>
+              </div>
+              <div class="six fields">
+                <div class="field">
+                  <label> Item Code </label>
+                  <select [(ngModel)]="item" class="ui search dropdown">
+                    <option>Select Item Code</option>
+                    <option [ngValue]="item" *ngFor="let item of items">{{item.code}}</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label> Item Name </label>
+                  <input [(ngModel)]="item.name" name="name" placeholder="Item Name" style="font-weight: bold;" type="text" readonly>
+                </div>
+                <div class="field">
+                  <label> Item Description </label>
+                  <input [(ngModel)]="item.description" name="description" placeholder="Item Description" style="font-weight: bold;" type="text"
+                         readonly>
+                </div>
+                <div class="field">
+                  <label> Item Unit Price </label>
+                  <input [(ngModel)]="item.price" name="price" placeholder="Item Unit Price" style="font-weight: bold;" type="text" readonly>
+                </div>
+                <div class="field">
+                  <label> Stock Quantity </label>
+                  <input [(ngModel)]="item.qty" name="stock" placeholder="Stock Quantity" style="font-weight: bold;" type="text" readonly>
+                </div>
+                <div class="field">
+                  <label> Order QTY </label>
+                  <input [(ngModel)]="qty" name="qty" placeholder="Order Qty" style="font-weight: bold;" type="number">
+                </div>
+              </div>
+
+              <div class="sixteen wide column">
+                <div class="inline fields" style="margin-left: 95%">
+                  <button (click)="onAdd()" class="ui mini shop icon primary button">
+                    <i class="shop icon icon"></i>
+                    Add
+                  </button>
+                </div>
+              </div>
+
+              <table class="ui single line striped selectable unstackable table">
+                <thead>
+                <tr>
+                  <th>Item Code</th>
+                  <th>Item Name</th>
+                  <th>Item Description</th>
+                  <th>Unit Price</th>
+                  <th>Qty</th>
+                  <th>Total</th>
+                  <th class="center aligned">#</th>
+                  <th class="center aligned">#</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let place of placeOrder">
+                  <td>{{place.item.code}}</td>
+                  <td>{{place.item.name}}</td>
+                  <td>{{place.item.description}}</td>
+                  <td>{{place.item.price}}</td>
+                  <td>{{place.qty}}</td>
+                  <td>{{place.total}}</td>
+                  <td class="center aligned">
+                    <button class="ui blue circular compact edit icon button"><i class="edit icon"></i></button>
+                  </td>
+                  <td class="center aligned">
+                    <button class="ui red circular compact trash icon button"><i class="trash icon"></i></button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+
+              <div class="inline fields">
+                <div class="sixteen wide field">
+
+                </div>
+              </div>
+
+              <div class="inline fields">
+                <div class="sixteen wide field">
+                  <label style="width: 25%;">Sub Total</label>
+                  <input [(ngModel)]="subTotal" type="text" name="total" placeholder="Sub Total">
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="negative ui cancel button">Cancel</div>
+    <div class="ui positive button">Save</div>
+  </div>
+</div>

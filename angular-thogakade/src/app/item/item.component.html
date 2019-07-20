@@ -1,0 +1,110 @@
+<div class="ui breadcrumb">
+  <div class="section">App</div>
+  <div class="divider"> / </div>
+  <div class="active section">Item</div>
+</div>
+
+<h3 class="ui header"></h3>
+
+<div class="ui grid">
+  <div class="sixteen column row">
+
+    <form  class="sixteen wide column">
+      <div class="ui teal secondary segment">
+        <div class="ui form mini">
+
+          <div class="inline fields">
+            <div class="sixteen wide field">
+              <label style="width: 20%;"> Code *</label>
+              <input [(ngModel)]="item.code" name="code" placeholder="Item Code" style="width: 80%;  font-weight: bold;" type="text" required [readonly]="isEdit">
+            </div>
+          </div>
+
+          <div class="inline fields">
+            <div class="sixteen wide field">
+              <label style="width: 20%;"> Name *</label>
+              <input [(ngModel)]="item.name" name="name" placeholder="Item Name" style="width: 80%; font-weight: bold;" type="text" required>
+            </div>
+          </div>
+
+          <div class="inline fields">
+            <div class="sixteen wide field">
+              <label style="width: 20%;">Description *</label>
+              <input [(ngModel)]="item.description" style="width: 80%;font-weight: bold;" name="description" placeholder="Item Description" required>
+            </div>
+          </div>
+
+          <div class="inline fields">
+            <div class="sixteen wide field">
+              <label style="width: 20%;"> Price *</label>
+              <input [(ngModel)]="item.price" style="width: 80%;font-weight: bold;" name="price" placeholder="Item Unit Price" type="number" required>
+            </div>
+          </div>
+          <div class="inline fields">
+            <div class="sixteen wide field">
+              <label style="width: 20%;"> QTY *</label>
+              <input [(ngModel)]="item.qty" style="width: 80%;font-weight: bold;" name="qty" placeholder="Item QTY On Hand" type="number" required>
+            </div>
+          </div>
+
+          <div class="inline fields" style="margin-left: 85%">
+              <div class="ui buttons">
+                <button (click)="onClear()" class="ui negative button">Clear</button>
+                <div class="or"></div>
+                <button (click)="onSave()" class="ui positive button">Save</button>
+              </div>
+          </div>
+
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<table class="ui single line striped selectable unstackable table">
+  <thead>
+  <tr>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>QTY</th>
+    <th class="center aligned">#</th>
+    <th class="center aligned">#</th>
+  </tr></thead>
+  <tbody>
+  <tr *ngFor="let item of items;">
+    <td >{{item.code}}</td>
+    <td >{{item.name}}</td>
+    <td >{{item.description}}</td>
+    <td >{{item.price}}</td>
+    <td >{{item.qty}}</td>
+    <td class="center aligned">
+      <button (click)="onEdit(item)" class="ui blue circular compact edit icon button"><i class="edit icon"></i></button>
+    </td>
+    <td class="center aligned">
+      <button (click)="onDelete(item)" class="ui red circular compact trash icon button"><i class="trash icon"></i></button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div id="deleteItemModel" class="ui basic modal">
+  <div class="ui icon header">
+    <i class="trash icon icon"></i>
+    Remove Item
+  </div>
+  <div style="margin-left: 25%" class="content center">
+    <p>Do you really want remove the Item. This cannot be undone</p>
+  </div>
+  <div class="actions">
+    <div class="ui red basic cancel inverted button">
+      <i class="remove icon"></i>
+      No
+    </div>
+    <div (click)="onCountinueDelete()" class="ui green ok inverted button">
+      <i class="checkmark icon"></i>
+      Yes
+    </div>
+  </div>
+</div>
